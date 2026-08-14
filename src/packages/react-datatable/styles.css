@@ -27,6 +27,70 @@
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
+/* ── Top Toolbar ──────── */
+.datatable-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: #09090e;
+  border-bottom: 1px solid var(--datatable-border);
+  flex-wrap: wrap;
+}
+
+.datatable-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+}
+
+.datatable-search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--datatable-muted);
+  pointer-events: none;
+}
+
+.datatable-search-input {
+  width: 100%;
+  padding: 6px 12px 6px 30px;
+  background: #111119;
+  border: 1px solid var(--datatable-border);
+  border-radius: 6px;
+  color: var(--datatable-text);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.datatable-search-input:focus {
+  border-color: var(--datatable-primary);
+}
+
+.datatable-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #111119;
+  border: 1px solid var(--datatable-border);
+  border-radius: 6px;
+  color: #c4c4d0;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.datatable-export-btn:hover {
+  border-color: var(--datatable-primary);
+  color: #60a5fa;
+  background-color: #16161f;
+}
+
 .datatable-scroll-wrapper {
   overflow-x: auto;
   width: 100%;
@@ -60,6 +124,21 @@
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.datatable-resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  cursor: col-resize;
+  user-select: none;
+  background: transparent;
+}
+
+.datatable-resize-handle:hover {
+  background: var(--datatable-primary);
 }
 
 .datatable-sort-indicator {
@@ -119,17 +198,38 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background-color: var(--datatable-bg);
   border-top: 1px solid var(--datatable-border);
   font-size: 12px;
   color: var(--datatable-muted);
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .datatable-pagination-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+}
+
+.datatable-page-size-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--datatable-muted);
+}
+
+.datatable-page-size-select {
+  padding: 3px 8px;
+  background: #111119;
+  border: 1px solid var(--datatable-border);
+  border-radius: 4px;
+  color: var(--datatable-text);
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
 }
 
 .datatable-btn {

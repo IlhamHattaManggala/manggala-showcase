@@ -77,6 +77,42 @@ export const SchemaForm: React.FC<SchemaFormProps> = ({
           </label>
         );
 
+      case 'file':
+        return (
+          <input
+            id={field.name}
+            type="file"
+            className="schema-form-input schema-form-file-input"
+            onChange={(e) => {
+              const files = e.target.files;
+              setFieldValue(field.name, files && files.length > 0 ? files[0] : null);
+            }}
+          />
+        );
+
+      case 'date-range':
+        return (
+          <div className="schema-form-date-range-wrap">
+            <input
+              type="date"
+              className="schema-form-input"
+              value={val.start || ''}
+              onChange={(e) =>
+                setFieldValue(field.name, { ...val, start: e.target.value })
+              }
+            />
+            <span className="schema-form-date-sep">to</span>
+            <input
+              type="date"
+              className="schema-form-input"
+              value={val.end || ''}
+              onChange={(e) =>
+                setFieldValue(field.name, { ...val, end: e.target.value })
+              }
+            />
+          </div>
+        );
+
       case 'radio':
         return (
           <div className="schema-form-radio-group">
@@ -111,28 +147,38 @@ export const SchemaForm: React.FC<SchemaFormProps> = ({
 
   return (
     <form className={`schema-form ${className}`} onSubmit={handleSubmit}>
-      {schema.map((field) => {
-        const hasError = Boolean(errors[field.name]);
-        return (
-          <div
-            key={field.name}
-            className={`schema-form-group ${hasError ? 'schema-form-group-error' : ''}`}
-          >
-            <label htmlFor={field.name} className="schema-form-label">
-              {field.label}
-              {field.required && <span className="schema-form-required">*</span>}
-            </label>
+      <div className="schema-form-grid">
+        {schema.map((field) => {
+          // Conditional Visibility check
+          if (field.condition && !field.condition(values)) {
+            return null;
+          }
 
-            {field.description && (
-              <div className="schema-form-desc">{field.description}</div>
-            )}
+          const hasError = Boolean(errors[field.name]);
+          const colSpan = field.colSpan ? Math.min(12, Math.max(1, field.colSpan)) : 12;
 
-            <div className="schema-form-control-wrap">{renderFieldInput(field)}</div>
+          return (
+            <div
+              key={field.name}
+              className={`schema-form-group ${hasError ? 'schema-form-group-error' : ''}`}
+              style={{ gridColumn: `span ${colSpan}` }}
+            >
+              <label htmlFor={field.name} className="schema-form-label">
+                {field.label}
+                {field.required && <span className="schema-form-required">*</span>}
+              </label>
 
-            {hasError && <div className="schema-form-error-msg">{errors[field.name]}</div>}
-          </div>
-        );
-      })}
+              {field.description && (
+                <div className="schema-form-desc">{field.description}</div>
+              )}
+
+              <div className="schema-form-control-wrap">{renderFieldInput(field)}</div>
+
+              {hasError && <div className="schema-form-error-msg">{errors[field.name]}</div>}
+            </div>
+          );
+        })}
+      </div>
 
       <button type="submit" className="schema-form-submit-btn">
         {submitText}

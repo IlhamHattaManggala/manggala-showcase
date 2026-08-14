@@ -7,6 +7,7 @@ export interface SpotlightAction {
   icon?: React.ReactNode;
   shortcut?: string[];
   keywords?: string[];
+  group?: string;
   onSelect: (action: SpotlightAction) => void;
 }
 

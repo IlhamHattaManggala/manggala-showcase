@@ -18,6 +18,19 @@
   color: var(--schema-form-text);
 }
 
+.schema-form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .schema-form-group {
+    grid-column: span 12 !important;
+  }
+}
+
 .schema-form-group {
   display: flex;
   flex-direction: column;
@@ -65,6 +78,17 @@
 
 .schema-form-select {
   cursor: pointer;
+}
+
+.schema-form-date-range-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.schema-form-date-sep {
+  font-size: 11px;
+  color: var(--schema-form-muted);
 }
 
 .schema-form-group-error .schema-form-input {

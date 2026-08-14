@@ -15,5 +15,7 @@ export interface DashboardGridProps {
   cols?: number;
   isEditable?: boolean;
   onLayoutChange?: (widgets: WidgetConfig[]) => void;
+  onWidgetResize?: (id: string, colSpan: number, rowSpan: number) => void;
+  storageKey?: string;
   className?: string;
 }

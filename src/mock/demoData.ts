@@ -82,24 +82,26 @@ export const mockIncidentsData: IncidentRecord[] = [
 export const mockSchemaForm: FormFieldSchema[] = [
   {
     name: 'appName',
-    label: 'Application Name',
+    label: 'Application Title',
     type: 'text',
-    placeholder: 'My Great SaaS App',
+    placeholder: 'e.g. Acme Enterprise Cloud',
     required: true,
-    description: 'The name displayed across admin headers & notifications.',
+    colSpan: 6,
   },
   {
     name: 'adminEmail',
-    label: 'System Admin Email',
+    label: 'System Notification Email',
     type: 'email',
     placeholder: 'admin@company.com',
     required: true,
+    colSpan: 6,
   },
   {
     name: 'environment',
     label: 'Environment Mode',
     type: 'select',
     required: true,
+    colSpan: 6,
     options: [
       { label: 'Production Mode', value: 'production' },
       { label: 'Staging Environment', value: 'staging' },
@@ -110,13 +112,23 @@ export const mockSchemaForm: FormFieldSchema[] = [
     name: 'enableSpotlight',
     label: 'Enable Spotlight Quick Search (Cmd+K)',
     type: 'toggle',
+    colSpan: 6,
     description: 'Allow users to search resources using keyboard shortcuts.',
   },
   {
     name: 'maintenanceMode',
     label: 'Maintenance Mode Banner',
     type: 'toggle',
+    colSpan: 6,
     description: 'Display temporary maintenance notice to non-admin users.',
+  },
+  {
+    name: 'maintenanceReason',
+    label: 'Reason for Maintenance (Conditional Field)',
+    type: 'text',
+    placeholder: 'e.g. Scheduled database migration',
+    colSpan: 6,
+    condition: (vals: Record<string, any>) => Boolean(vals.maintenanceMode),
   },
   {
     name: 'maxUploadMb',
@@ -125,12 +137,14 @@ export const mockSchemaForm: FormFieldSchema[] = [
     min: 1,
     max: 1000,
     placeholder: '50',
+    colSpan: 6,
   },
   {
     name: 'welcomeNotes',
     label: 'Custom Announcement Message',
     type: 'textarea',
     placeholder: 'Welcome to our platform updates...',
+    colSpan: 12,
   },
 ];
 

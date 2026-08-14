@@ -140,6 +140,11 @@ export const DataTableDemoView: React.FC = () => {
                 columns={columns}
                 rowKey="id"
                 selectable={true}
+                searchable={true}
+                exportable={true}
+                resizableColumns={true}
+                pageSizeOptions={[5, 10, 20]}
+                onPageSizeChange={(size) => console.log('Page size changed to:', size)}
                 onSelectionChange={setSelected}
                 pagination={{ total: filtered.length, currentPage: page, perPage: 5, lastPage: Math.max(1, Math.ceil(filtered.length / 5)) }}
                 onPageChange={setPage}

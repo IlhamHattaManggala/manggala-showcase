@@ -103,13 +103,32 @@
   margin-bottom: 32px;
 }
 
-.status-page-section-title {
-  font-size: 15px;
-  font-weight: 600;
+.status-page-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 14px;
   border-bottom: 1px solid var(--status-page-border);
   padding-bottom: 8px;
+  gap: 12px;
+}
+
+.status-page-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
   color: #e2e8f0;
+}
+
+.status-page-search-input {
+  padding: 4px 10px;
+  background: #111119;
+  border: 1px solid var(--status-page-border);
+  border-radius: 6px;
+  color: var(--status-page-text);
+  font-size: 11px;
+  outline: none;
+  width: 180px;
 }
 
 .status-page-services-list {
@@ -188,6 +207,26 @@
   opacity: 0.8;
 }
 
+/* ── Interactive Floating Tooltip ──────── */
+.status-page-tooltip {
+  background: #161622;
+  border: 1px solid #2e2e42;
+  border-radius: 6px;
+  padding: 6px 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  font-size: 11px;
+  color: #f4f4f8;
+}
+.status-page-tooltip-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: #3b82f6;
+}
+.status-page-tooltip-detail {
+  font-size: 10px;
+  color: #8b8ba8;
+}
+
 .status-page-uptime-labels {
   display: flex;
   justify-content: space-between;
@@ -225,11 +264,28 @@
   margin-bottom: 8px;
 }
 
+.status-page-incident-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .status-page-incident-title {
   font-size: 14px;
   font-weight: 600;
   margin: 0;
   color: #e2e8f0;
+}
+
+.status-page-toggle-incident-btn {
+  background: none;
+  border: none;
+  color: var(--status-page-muted);
+  font-size: 11px;
+  cursor: pointer;
+}
+.status-page-toggle-incident-btn:hover {
+  color: #3b82f6;
 }
 
 .status-page-severity-badge {

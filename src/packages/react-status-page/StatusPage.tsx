@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import type { StatusPageProps, HealthStatus } from './types';
+import React, { useEffect, useState, useMemo } from 'react';
+import type { StatusPageProps, HealthStatus, UptimeDay } from './types';
 import { useStatusPage } from './useStatusPage';
 import './styles.css';
 
@@ -10,9 +10,14 @@ export const StatusPage: React.FC<StatusPageProps> = ({
   showUptimeBars = true,
   autoRefreshIntervalSeconds = 0,
   onRefresh,
+  filterServices = true,
+  expandableIncidents = true,
   className = '',
 }) => {
   const { overallStatus, statusLabel } = useStatusPage(services);
+  const [searchFilter, setSearchFilter] = useState('');
+  const [hoveredBar, setHoveredBar] = useState<{ day: UptimeDay; serviceName: string; x: number; y: number } | null>(null);
+  const [expandedIncidents, setExpandedIncidents] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (autoRefreshIntervalSeconds <= 0 || !onRefresh) return;
@@ -39,6 +44,21 @@ export const StatusPage: React.FC<StatusPageProps> = ({
     }
   };
 
+  const filteredServices = useMemo(() => {
+    if (!filterServices || !searchFilter.trim()) return services;
+    const lower = searchFilter.toLowerCase();
+    return services.filter(
+      (s) =>
+        s.name.toLowerCase().includes(lower) ||
+        s.description?.toLowerCase().includes(lower) ||
+        s.status.toLowerCase().includes(lower)
+    );
+  }, [services, filterServices, searchFilter]);
+
+  const toggleIncidentExpand = (id: string) => {
+    setExpandedIncidents((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const activeIncidents = incidents.filter((i) => i.status !== 'resolved');
   const pastIncidents = incidents.filter((i) => i.status === 'resolved');
 
@@ -62,9 +82,21 @@ export const StatusPage: React.FC<StatusPageProps> = ({
       </div>
 
       <section className="status-page-section">
-        <h2 className="status-page-section-title">System Services</h2>
+        <div className="status-page-section-header">
+          <h2 className="status-page-section-title">System Services</h2>
+          {filterServices && (
+            <input
+              type="text"
+              className="status-page-search-input"
+              placeholder="Filter services..."
+              value={searchFilter}
+              onChange={(e) => setSearchFilter(e.target.value)}
+            />
+          )}
+        </div>
+
         <div className="status-page-services-list">
-          {services.map((service) => (
+          {filteredServices.map((service) => (
             <div key={service.id} className="status-page-service-card">
               <div className="status-page-service-header">
                 <div className="status-page-service-info">
@@ -90,9 +122,16 @@ export const StatusPage: React.FC<StatusPageProps> = ({
                       <div
                         key={day.date || idx}
                         className={`status-page-bar ${getStatusColorClass(day.status)}`}
-                        title={`${day.date}: ${day.status.replace('_', ' ')} ${
-                          day.uptimePercentage !== undefined ? `(${day.uptimePercentage}%)` : ''
-                        }`}
+                        onMouseEnter={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          setHoveredBar({
+                            day,
+                            serviceName: service.name,
+                            x: rect.left + rect.width / 2,
+                            y: rect.top - 8,
+                          });
+                        }}
+                        onMouseLeave={() => setHoveredBar(null)}
                       />
                     ))}
                   </div>
@@ -108,34 +147,76 @@ export const StatusPage: React.FC<StatusPageProps> = ({
         </div>
       </section>
 
+      {/* Floating Interactive Tooltip for Uptime Bars */}
+      {hoveredBar && (
+        <div
+          className="status-page-tooltip"
+          style={{
+            position: 'fixed',
+            left: `${hoveredBar.x}px`,
+            top: `${hoveredBar.y}px`,
+            transform: 'translate(-50%, -100%)',
+            pointerEvents: 'none',
+            zIndex: 10000,
+          }}
+        >
+          <div className="status-page-tooltip-title">{hoveredBar.day.date}</div>
+          <div className="status-page-tooltip-detail">
+            Status: <strong className="status-page-tooltip-status">{hoveredBar.day.status.replace('_', ' ').toUpperCase()}</strong>
+          </div>
+          {hoveredBar.day.uptimePercentage !== undefined && (
+            <div className="status-page-tooltip-detail">Uptime: {hoveredBar.day.uptimePercentage}%</div>
+          )}
+          {hoveredBar.day.avgLatencyMs !== undefined && (
+            <div className="status-page-tooltip-detail">Avg Latency: {hoveredBar.day.avgLatencyMs} ms</div>
+          )}
+        </div>
+      )}
+
       <section className="status-page-section">
         <h2 className="status-page-section-title">Active Incidents</h2>
         {activeIncidents.length === 0 ? (
           <div className="status-page-empty-incidents">No active incidents reported.</div>
         ) : (
           <div className="status-page-incidents-list">
-            {activeIncidents.map((incident) => (
-              <div key={incident.id} className="status-page-incident-card">
-                <div className="status-page-incident-header">
-                  <h3 className="status-page-incident-title">{incident.title}</h3>
-                  <span className={`status-page-severity-badge severity-${incident.severity}`}>
-                    {incident.severity.toUpperCase()}
-                  </span>
-                </div>
-                <div className="status-page-incident-meta">
-                  Status: <strong>{incident.status.toUpperCase()}</strong> | Updated:{' '}
-                  {incident.updatedAt}
-                </div>
-                <div className="status-page-updates-timeline">
-                  {incident.updates.map((update, idx) => (
-                    <div key={idx} className="status-page-update-item">
-                      <span className="status-page-update-time">{update.timestamp}</span>
-                      <p className="status-page-update-msg">{update.message}</p>
+            {activeIncidents.map((incident) => {
+              const isExpanded = expandedIncidents[incident.id] ?? true;
+              return (
+                <div key={incident.id} className="status-page-incident-card">
+                  <div className="status-page-incident-header">
+                    <div className="status-page-incident-title-wrap">
+                      <h3 className="status-page-incident-title">{incident.title}</h3>
+                      <span className={`status-page-severity-badge severity-${incident.severity}`}>
+                        {incident.severity.toUpperCase()}
+                      </span>
                     </div>
-                  ))}
+                    {expandableIncidents && (
+                      <button
+                        type="button"
+                        className="status-page-toggle-incident-btn"
+                        onClick={() => toggleIncidentExpand(incident.id)}
+                      >
+                        {isExpanded ? 'Collapse ▲' : 'Expand ▼'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="status-page-incident-meta">
+                    Status: <strong>{incident.status.toUpperCase()}</strong> | Updated:{' '}
+                    {incident.updatedAt}
+                  </div>
+                  {isExpanded && (
+                    <div className="status-page-updates-timeline">
+                      {incident.updates.map((update, idx) => (
+                        <div key={idx} className="status-page-update-item">
+                          <span className="status-page-update-time">{update.timestamp}</span>
+                          <p className="status-page-update-msg">{update.message}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>

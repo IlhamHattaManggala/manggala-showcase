@@ -43,5 +43,7 @@ export interface StatusPageProps {
   showUptimeBars?: boolean;
   autoRefreshIntervalSeconds?: number;
   onRefresh?: () => void;
+  filterServices?: boolean;
+  expandableIncidents?: boolean;
   className?: string;
 }

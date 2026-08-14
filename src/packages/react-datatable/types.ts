@@ -29,4 +29,14 @@ export interface DataTableProps<T> {
   pagination?: PaginationMeta;
   className?: string;
   emptyMessage?: string;
+
+  /* ── New v1.1.0 Features ──────── */
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  onSearch?: (query: string) => void;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (size: number) => void;
+  exportable?: boolean;
+  onExportCSV?: (data: T[]) => void;
+  resizableColumns?: boolean;
 }

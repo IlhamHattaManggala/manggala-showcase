@@ -48,6 +48,11 @@
   color: var(--spotlight-muted);
 }
 
+.spotlight-spinner {
+  font-size: 14px;
+  animation: spotlightSpin 1s infinite linear;
+}
+
 .spotlight-input {
   flex: 1;
   background: transparent;
@@ -82,6 +87,29 @@
   text-align: center;
   color: var(--spotlight-muted);
   font-size: 13px;
+}
+
+.spotlight-groups-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spotlight-group-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.spotlight-group-header {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--spotlight-muted);
+  padding: 6px 12px 2px 12px;
+  position: sticky;
+  top: 0;
+  background: var(--spotlight-bg);
+  z-index: 2;
 }
 
 .spotlight-list {
@@ -150,4 +178,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes spotlightSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

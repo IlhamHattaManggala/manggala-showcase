@@ -7,7 +7,9 @@ export type FieldType =
   | 'select'
   | 'toggle'
   | 'radio'
-  | 'checkbox';
+  | 'checkbox'
+  | 'file'
+  | 'date-range';
 
 export interface SelectOption {
   label: string;
@@ -25,6 +27,8 @@ export interface FormFieldSchema {
   max?: number;
   pattern?: string;
   options?: SelectOption[];
+  colSpan?: number; // 1 to 12
+  condition?: (values: Record<string, any>) => boolean;
   validate?: (value: any) => string | undefined;
 }
 
