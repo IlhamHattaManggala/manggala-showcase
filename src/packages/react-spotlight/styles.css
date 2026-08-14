@@ -1,0 +1,153 @@
+:root {
+  --spotlight-bg: #111119;
+  --spotlight-border: #1e1e2e;
+  --spotlight-text: #f4f4f8;
+  --spotlight-muted: #8b8ba8;
+  --spotlight-active-bg: #16161f;
+  --spotlight-accent: #3b82f6;
+  --spotlight-radius: 12px;
+  --spotlight-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(5, 5, 10, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+  animation: spotlightFadeIn 0.15s ease-out;
+}
+
+.spotlight-container {
+  width: 100%;
+  max-width: 640px;
+  background-color: var(--spotlight-bg);
+  border: 1px solid var(--spotlight-border);
+  border-radius: var(--spotlight-radius);
+  box-shadow: var(--spotlight-shadow);
+  overflow: hidden;
+  color: var(--spotlight-text);
+  font-family: inherit;
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--spotlight-border);
+  gap: 12px;
+}
+
+.spotlight-search-icon {
+  font-size: 18px;
+  opacity: 0.7;
+  color: var(--spotlight-muted);
+}
+
+.spotlight-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--spotlight-text);
+}
+
+.spotlight-input::placeholder {
+  color: var(--spotlight-muted);
+}
+
+.spotlight-esc-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--spotlight-border);
+  color: var(--spotlight-muted);
+  cursor: pointer;
+}
+
+.spotlight-body {
+  max-height: 380px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.spotlight-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--spotlight-muted);
+  font-size: 13px;
+}
+
+.spotlight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.spotlight-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 12px;
+  transition: background-color 0.15s ease;
+}
+
+.spotlight-item-selected {
+  background-color: var(--spotlight-active-bg);
+}
+
+.spotlight-item-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  color: var(--spotlight-accent);
+}
+
+.spotlight-item-content {
+  flex: 1;
+}
+
+.spotlight-item-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--spotlight-text);
+}
+
+.spotlight-item-desc {
+  font-size: 11px;
+  color: var(--spotlight-muted);
+  margin-top: 2px;
+}
+
+.spotlight-item-shortcuts {
+  display: flex;
+  gap: 4px;
+}
+
+.spotlight-shortcut-badge {
+  font-size: 10px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--spotlight-border);
+  color: var(--spotlight-muted);
+}
+
+@keyframes spotlightFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import type { DataTableProps, Column } from './types';
+import './styles.css';
 
 export function DataTable<T extends Record<string, any>>({
   data,

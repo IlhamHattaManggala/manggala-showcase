@@ -1,0 +1,156 @@
+:root {
+  --datatable-bg: #0d0d14;
+  --datatable-border: #1e1e2e;
+  --datatable-text: #e2e8f0;
+  --datatable-muted: #8b8ba8;
+  --datatable-header-bg: #111119;
+  --datatable-hover-bg: #16161f;
+  --datatable-selected-bg: rgba(59, 130, 246, 0.1);
+  --datatable-focused-outline: #3b82f6;
+  --datatable-primary: #3b82f6;
+  --datatable-radius: 10px;
+}
+
+.datatable-container {
+  width: 100%;
+  background-color: var(--datatable-bg);
+  border: 1px solid var(--datatable-border);
+  border-radius: var(--datatable-radius);
+  overflow: hidden;
+  outline: none;
+  font-family: inherit;
+  color: var(--datatable-text);
+}
+
+.datatable-container:focus-visible {
+  border-color: var(--datatable-focused-outline);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.datatable-scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.datatable-th {
+  background-color: var(--datatable-header-bg);
+  color: var(--datatable-muted);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--datatable-border);
+  user-select: none;
+}
+
+.datatable-th-sortable {
+  cursor: pointer;
+}
+
+.datatable-th-sortable:hover {
+  color: var(--datatable-text);
+}
+
+.datatable-th-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.datatable-sort-indicator {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.datatable-td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #161620;
+  transition: background-color 0.15s ease;
+  vertical-align: middle;
+}
+
+.datatable-tr:last-child .datatable-td {
+  border-bottom: none;
+}
+
+.datatable-tr {
+  cursor: pointer;
+}
+
+.datatable-tr:hover .datatable-td {
+  background-color: var(--datatable-hover-bg);
+}
+
+.datatable-tr-selected .datatable-td {
+  background-color: var(--datatable-selected-bg) !important;
+}
+
+.datatable-tr-focused {
+  outline: 1px inset var(--datatable-focused-outline);
+}
+
+.datatable-th-checkbox,
+.datatable-td-checkbox {
+  width: 44px;
+  min-width: 44px;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.datatable-th-checkbox input,
+.datatable-td-checkbox input {
+  cursor: pointer;
+  accent-color: #3b82f6;
+}
+
+.datatable-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--datatable-muted);
+}
+
+.datatable-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--datatable-bg);
+  border-top: 1px solid var(--datatable-border);
+  font-size: 12px;
+  color: var(--datatable-muted);
+}
+
+.datatable-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.datatable-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--datatable-border);
+  border-radius: 6px;
+  background-color: #111119;
+  color: #c4c4d0;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.datatable-btn:hover:not(:disabled) {
+  border-color: var(--datatable-primary);
+  color: #60a5fa;
+  background-color: #16161f;
+}
+
+.datatable-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

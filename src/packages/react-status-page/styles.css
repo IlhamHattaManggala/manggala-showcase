@@ -1,0 +1,288 @@
+:root {
+  --status-page-bg: #05050a;
+  --status-page-border: #1e1e2e;
+  --status-page-text: #e2e8f0;
+  --status-page-muted: #8b8ba8;
+  --status-page-card-bg: #0d0d14;
+  --status-operational: #22c55e;
+  --status-degraded: #f59e0b;
+  --status-outage: #ef4444;
+  --status-maintenance: #3b82f6;
+  --status-radius: 10px;
+}
+
+.status-page-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: inherit;
+  color: var(--status-page-text);
+}
+
+.status-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.status-page-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #f4f4f8;
+}
+
+.status-page-subtitle {
+  font-size: 12px;
+  color: var(--status-page-muted);
+}
+
+.status-page-refresh-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--status-page-border);
+  background: #111119;
+  color: #c4c4d0;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.status-page-refresh-btn:hover {
+  background: #16161f;
+  border-color: #3b82f6;
+}
+
+.status-page-banner {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: var(--status-radius);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.status-page-banner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.status-page-bg-operational {
+  background-color: var(--status-operational);
+  color: #ffffff;
+}
+
+.status-page-bg-degraded {
+  background-color: var(--status-degraded);
+  color: #ffffff;
+}
+
+.status-page-bg-outage {
+  background-color: var(--status-outage);
+  color: #ffffff;
+}
+
+.status-page-bg-maintenance {
+  background-color: var(--status-maintenance);
+  color: #ffffff;
+}
+
+.status-page-bg-muted {
+  background-color: var(--status-page-muted);
+  color: #ffffff;
+}
+
+.status-page-section {
+  margin-bottom: 32px;
+}
+
+.status-page-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--status-page-border);
+  padding-bottom: 8px;
+  color: #e2e8f0;
+}
+
+.status-page-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-page-service-card {
+  border: 1px solid var(--status-page-border);
+  border-radius: var(--status-radius);
+  padding: 18px;
+  background-color: var(--status-page-card-bg);
+}
+
+.status-page-service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-page-service-name {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  color: #e2e8f0;
+}
+
+.status-page-service-desc {
+  font-size: 12px;
+  color: var(--status-page-muted);
+}
+
+.status-page-service-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-page-latency {
+  font-size: 12px;
+  color: var(--status-page-muted);
+  font-family: monospace;
+}
+
+.status-page-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.status-page-uptime-history {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--status-page-border);
+}
+
+.status-page-uptime-bars {
+  display: flex;
+  gap: 3px;
+  height: 20px;
+  align-items: center;
+}
+
+.status-page-bar {
+  flex: 1;
+  height: 18px;
+  border-radius: 2px;
+  transition: opacity 0.15s ease;
+  cursor: pointer;
+}
+
+.status-page-bar:hover {
+  opacity: 0.8;
+}
+
+.status-page-uptime-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--status-page-muted);
+  margin-top: 6px;
+}
+
+.status-page-empty-incidents {
+  padding: 20px;
+  border: 1px dashed var(--status-page-border);
+  border-radius: var(--status-radius);
+  text-align: center;
+  color: var(--status-page-muted);
+  font-size: 13px;
+}
+
+.status-page-incidents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-page-incident-card {
+  border: 1px solid var(--status-page-border);
+  border-radius: var(--status-radius);
+  padding: 18px;
+  background-color: var(--status-page-card-bg);
+}
+
+.status-page-incident-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.status-page-incident-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.status-page-severity-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.severity-minor {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.severity-major {
+  background-color: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+.severity-critical {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.status-page-incident-meta {
+  font-size: 12px;
+  color: var(--status-page-muted);
+  margin-bottom: 12px;
+}
+
+.status-page-updates-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 2px solid var(--status-page-border);
+  padding-left: 14px;
+  margin-top: 10px;
+}
+
+.status-page-update-time {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--status-page-muted);
+  display: block;
+}
+
+.status-page-update-msg {
+  font-size: 12px;
+  margin: 3px 0 0 0;
+  color: #c4c4d0;
+}
+
+.status-page-resolved {
+  opacity: 0.85;
+}

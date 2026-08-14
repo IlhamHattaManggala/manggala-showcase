@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import type { StatusPageProps, HealthStatus } from './types';
 import { useStatusPage } from './useStatusPage';
+import './styles.css';
 
 export const StatusPage: React.FC<StatusPageProps> = ({
   systemName = 'System Overview',
