@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StatusPageProps, HealthStatus } from './types';
+import type { StatusPageProps, HealthStatus } from './types';
 import { useStatusPage } from './useStatusPage';
 
 export const StatusPage: React.FC<StatusPageProps> = ({

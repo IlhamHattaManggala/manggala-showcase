@@ -1,5 +1,5 @@
 import React from 'react';
-import { WidgetConfig } from './types';
+import type { WidgetConfig } from './types';
 
 export interface WidgetCardProps {
   widget: WidgetConfig;

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ServiceHealth, HealthStatus } from './types';
+import type { ServiceHealth, HealthStatus } from './types';
 
 export function useStatusPage(services: ServiceHealth[]) {
   const overallStatus = useMemo<HealthStatus>(() => {

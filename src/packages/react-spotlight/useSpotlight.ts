@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { SpotlightContext } from './SpotlightContext';
-import { SpotlightAction, SpotlightContextType } from './types';
+import type { SpotlightAction, SpotlightContextType } from './types';
 
 export const useSpotlight = (): SpotlightContextType => {
   const context = useContext(SpotlightContext);

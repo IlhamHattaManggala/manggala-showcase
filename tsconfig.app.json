@@ -16,6 +16,16 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Path Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@manggala31/react-spotlight": ["src/packages/react-spotlight"],
+      "@manggala31/react-dashboard-grid": ["src/packages/react-dashboard-grid"],
+      "@manggala31/react-datatable": ["src/packages/react-datatable"],
+      "@manggala31/react-status-page": ["src/packages/react-status-page"],
+      "@manggala31/schema-form-react": ["src/packages/schema-form-react"]
+    },
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,

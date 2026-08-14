@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { DashboardGridProps, WidgetConfig } from './types';
+import type { DashboardGridProps, WidgetConfig } from './types';
 import { WidgetCard } from './WidgetCard';
 
 export const DashboardGrid: React.FC<DashboardGridProps> = ({

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { WidgetConfig } from './types';
+import type { WidgetConfig } from './types';
 
 export function useDashboardGrid(initialWidgets: WidgetConfig[]) {
   const [widgets, setWidgets] = useState<WidgetConfig[]>(initialWidgets);

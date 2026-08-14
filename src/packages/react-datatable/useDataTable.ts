@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export function useDataTable<T>(initialSortKey = '', initialDirection: 'asc' | 'desc' = 'asc') {
+export function useDataTable(initialSortKey = '', initialDirection: 'asc' | 'desc' = 'asc') {
   const [sortKey, setSortKey] = useState<string>(initialSortKey);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>(initialDirection);
   const [page, setPage] = useState<number>(1);

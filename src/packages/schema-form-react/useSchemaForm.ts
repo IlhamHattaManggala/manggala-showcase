@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { FormFieldSchema } from './types';
+import type { FormFieldSchema } from './types';
 
 export function useSchemaForm(
   schema: FormFieldSchema[],

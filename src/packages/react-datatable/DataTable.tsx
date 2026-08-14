@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { DataTableProps, Column } from './types';
+import type { DataTableProps, Column } from './types';
 
 export function DataTable<T extends Record<string, any>>({
   data,

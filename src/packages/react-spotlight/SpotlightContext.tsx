@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
-import { SpotlightAction, SpotlightActionGroup, SpotlightContextType } from './types';
+import type { SpotlightAction, SpotlightActionGroup, SpotlightContextType } from './types';
 
 export const SpotlightContext = createContext<SpotlightContextType | undefined>(undefined);
 

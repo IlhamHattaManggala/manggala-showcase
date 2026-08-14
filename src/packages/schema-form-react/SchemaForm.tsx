@@ -1,5 +1,5 @@
 import React from 'react';
-import { SchemaFormProps, FormFieldSchema } from './types';
+import type { SchemaFormProps, FormFieldSchema } from './types';
 import { useSchemaForm } from './useSchemaForm';
 
 export const SchemaForm: React.FC<SchemaFormProps> = ({

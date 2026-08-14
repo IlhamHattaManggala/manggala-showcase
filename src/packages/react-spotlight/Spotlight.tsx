@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useSpotlight } from './useSpotlight';
-import { SpotlightAction } from './types';
+import type { SpotlightAction } from './types';
 
 export interface SpotlightProps {
   placeholder?: string;
