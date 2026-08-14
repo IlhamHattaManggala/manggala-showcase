@@ -10,11 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@manggala31/react-dashboard-grid": "^1.0.0",
-    "@manggala31/react-datatable": "^1.0.0",
-    "@manggala31/react-spotlight": "^1.0.0",
-    "@manggala31/react-status-page": "^1.0.0",
-    "@manggala31/schema-form-react": "^1.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "lucide-react": "^0.475.0",
     "react": "^19.0.0",
