@@ -34,7 +34,7 @@ function ShowcaseApp() {
   const [collapsed, setCollapsed] = useState(false);
   const { openSpotlight } = useSpotlight();
 
-  const views: Record<ActiveTab, JSX.Element> = {
+  const views: Record<ActiveTab, React.JSX.Element> = {
     'landing':        <LandingView onSelectTab={setActiveTab} />,
     'universal-panel': <UniversalPanelDemoView />,
     'dashboard-grid':  <DashboardGridView />,
