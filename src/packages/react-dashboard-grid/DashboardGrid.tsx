@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import type { DashboardGridProps, WidgetConfig } from './types';
 import { WidgetCard } from './WidgetCard';
 import './styles.css';
