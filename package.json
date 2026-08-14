@@ -1,0 +1,32 @@
+{
+  "name": "manggala-showcase",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@manggala31/react-dashboard-grid": "file:../react-dashboard-grid",
+    "@manggala31/react-datatable": "file:../react-datatable",
+    "@manggala31/react-spotlight": "file:../react-spotlight",
+    "@manggala31/react-status-page": "file:../react-status-page",
+    "@manggala31/schema-form-react": "file:../schema-form-react",
+    "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^0.475.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "typescript": "^5.5.0",
+    "vite": "^6.0.0"
+  }
+}
